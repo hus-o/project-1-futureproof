@@ -18,5 +18,8 @@
   "homepage": "https://github.com/hus-o/project-1-futureproof#readme",
   "devDependencies": {
     "express": "^4.17.1"
+  },
+  "dependencies": {
+    "pug": "^2.0.4"
   }
 }
