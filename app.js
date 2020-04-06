@@ -25,7 +25,6 @@ function savePost(postData){
     //     comments: {},
     //     emoji: null,
     //     giphy: null    
-    
     // };
 
     let post = { 
@@ -40,8 +39,13 @@ function savePost(postData){
     fs.readFile('./posts.json', 'utf-8', function(err, data) {
         if (err) throw err
         var arrayOfObjects = JSON.parse(data)
-        arrayOfObjects.posts.push(post)
-    
+        
+        if(arrayOfObjects[0] === undefined){
+            arrayOfObjects= []
+        }
+        
+        arrayOfObjects.push(post)
+                
         fs.writeFile('./posts.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
             if (err) throw err
             console.log('Done!')
