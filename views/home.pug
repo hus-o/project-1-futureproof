@@ -5,6 +5,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title("Document")
+        script(src="client.js")
+        script(src="https://code.jquery.com/jquery-3.4.1.js")
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     nav
         a(href="/blogPosts") !{"blog posts"}
         
@@ -19,13 +22,10 @@ html(lang="en")
                 textarea(id="postContent" name="postContent" rows="4" cols="50"  maxlength="50" placeholder="Please write post") !{postContent}
                 
                 label(for="gif") !{"gif"} 
-                input(type="text" name="gif" id="gif" placeholder="insert gif url" value=gif)
-                
-                label(for="emoji") !{"emoji"}
-                select(id="emoji" name="emoji" value=emoji)
-                    option(value="smile") !{"smile"}
-                    option(value="sad") !{"sad"}
-                    option(value="random") !{"random"}
-        
-        
-                input(type="submit" name="submit" id="submit" value="submit post")
+                div(class="gif-search")
+                    input(type="text" name="gif" id="gif" placeholder="Search for a gif")
+                    input(type="button" name="gifSearch" id="gifSearch" value="Search")
+               
+    
+                input(type="submit" name="submit" id="submit" value="Submit post")
+
