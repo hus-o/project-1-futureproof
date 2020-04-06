@@ -11,7 +11,7 @@ head
 
 body
     main
-        section
-            #{user}
-            #{content}
-            #{gif}
+        each blogPost in blogData
+            section
+                h5= blogPost.userName
+                p= blogPost.postContent
