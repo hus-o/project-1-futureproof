@@ -88,7 +88,7 @@ app.get("/", (req,res) => {
     res.send(homepage) 
 })
 
-app.get("/blogposts", (req,res) =>{
+app.get("/blogPosts", (req,res) =>{
     let rawData = fs.readFileSync("db.json")
     let blogData = JSON.parse(rawData)
     res.render("results", {blogData:blogData})
@@ -97,7 +97,6 @@ app.get("/blogposts", (req,res) =>{
 app.post("/submitPost", (req,res) =>{
     savePost(req.body);
     res.redirect("/blogPosts")
-
 })
 
 app.post("/addComment",(req,res) =>{
