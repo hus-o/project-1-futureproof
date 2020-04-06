@@ -11,7 +11,7 @@ head
 
 body    
     main
-        form(method="POST" action="/submitListing" enctype="multipart/form-data" name="form")
+        form(method="POST" action="/submitListing" name="form")
 
             label(for="descriptionShort") !{"Description"} 
             input(type="text" name="descriptionShort" id="descriptionShort" placeholder="Please provide a short description of item" value=descriptionShort)
