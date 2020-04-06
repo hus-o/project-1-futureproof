@@ -1,24 +1,32 @@
-required:required
-
-DOCTYPE
 html(lang="en")
 
-head
-    link(rel="stylesheet" href="resultsStyles.css")
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title("Document")
 
-nav
-    a(href="/blogPosts") !{"blog posts"}
-    
-body
-    main
-        each blogPost in blogData
-            section
-                h5= blogPost.userName
-                p= blogPost.postContent
-                img.sr(src=blogPost.gif, alt="gif")
-                
-                div=blogPost.comments
-                a(href="/addComment") !{"add comment"}
+    head
+        link(rel="stylesheet" href="resultsStyles.css")
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title("Document")
+
+
+    nav
+        a(href="/blogPosts") !{"blog posts"}
+        
+    body
+        main
+            each blogPost in blogData
+                section
+                    h5= blogPost.userName
+                    p= blogPost.postContent
+                    img.sr(src=blogPost.gif, alt="gif")
+                    
+                    each comment in blogPost.comments
+                        p= comment
+                    
+                    form(method="POST" action="/addComment" name="addComment") 
+                        input(type="text" name="ID" value=blogPost.ID)
+                        textarea(name="comment", cols="30", rows="10")
+                        
+                        input(type="submit" value="add comment")   
+
+
+    script(src="addComment.js")
