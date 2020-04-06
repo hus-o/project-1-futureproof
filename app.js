@@ -3,12 +3,12 @@ const PORT = process.env.PORT || 4001;
 const pug = require('pug')
 const path = require('path');
 const app= express();
-const fs = require("fs")
+const fs = require("fs");
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'views')));
-app.use(express.static(path.join(__dirname,'uploads')));
+
 app.set('view engine', 'pug')
 
 const compiledHomePageTemplate = pug.compileFile('views/home.pug');
@@ -50,6 +50,7 @@ function addComment(postComment){
 
 
 }
+
 
 app.get("/", (req,res) => {
 

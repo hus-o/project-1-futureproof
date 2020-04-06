@@ -30,6 +30,7 @@ label, input{
 
 }
 
-input{
-    min-width: 400px;
+.gif-search{
+    display:flex;
+    justify-content: space-between;
 }
