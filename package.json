@@ -4,6 +4,7 @@
   "description": "An anonymous simple blog",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/hus-o/project-1-futureproof#readme",
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
   },
   "dependencies": {
     "pug": "^2.0.4"
