@@ -1,0 +1,40 @@
+required:required
+
+DOCTYPE
+html(lang="en")
+
+head
+    link(rel="stylesheet" href="homepageStyles.css")
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title("Document")
+
+body    
+    main
+        form(method="POST" action="/submitListing" enctype="multipart/form-data" name="form")
+
+            label(for="descriptionShort") !{"Description"} 
+            input(type="text" name="descriptionShort" id="descriptionShort" placeholder="Please provide a short description of item" value=descriptionShort)
+
+            label(for="condition") !{"condition"}
+            select(id="condition" name="condition" value=condition)
+                option(value="New") !{"New"}
+                option(value="Opened - never used") !{"Opened – never used"}
+                option(value="Manufacturer refurbished") !{"Manufacturer refurbished"}
+                option(value="Seller refurbished") !{"Seller refurbished"}
+                option(value="Used") !{"Used"}
+                option(value="For parts or not working") !{"For parts or not working"}
+
+    
+            label(for="price") !{"price"}
+            input(type="number" min="0" name="price" id="price" value=price)
+
+            label(for="details") !{"details"}
+            textarea(id="details" name="details" rows="4" cols="50" placeholder="Please provide details of the product") !{details}
+            
+            br
+            input(type="file" name="productImage" id="productImage") 
+            br
+            input(type="submit" name="submit" id="submit" value="submit listing")
+            br
+            script(src='submission.js')
