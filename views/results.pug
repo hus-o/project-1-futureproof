@@ -6,6 +6,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title("Document")
+        script(src="client.js")
+        script(src="https://code.jquery.com/jquery-3.4.1.js")
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 
 
     nav
@@ -26,7 +29,4 @@ html(lang="en")
                         input(type="text" name="ID" value=blogPost.ID)
                         textarea(name="comment", cols="30", rows="10")
                         
-                        input(type="submit" value="add comment")   
-
-
-    script(src="addComment.js")
+                        input(type="submit" value="add comment")
