@@ -13,14 +13,53 @@ app.set('view engine', 'pug')
 
 const compiledHomePageTemplate = pug.compileFile('views/home.pug');
 
+function savePost(postData){
+
+    let post = { 
+        "ID":"1",
+        "userName":postData.userName,
+        "postContent": postData.postContent,
+        "comments": {},
+        "gif": postData.gif,
+        "emoji": postData.emoji,
+    };
+
+    fs.readFile('./db.json', 'utf-8', function(err, data) {
+        if (err) throw err
+        var arrayOfObjects = JSON.parse(data)
+        
+        if(arrayOfObjects[0] === undefined){
+            arrayOfObjects= []
+        }
+        
+        arrayOfObjects.push(post)
+                
+        fs.writeFile('./db.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+            if (err) throw err
+            console.log('post added to db.json')
+        })
+    })
+
+}
+
+
+function addComment(postComment){
+    //get id
+    //append comment to empty
+    //re load the results
+
+
+}
 
 app.get("/", (req,res) => {
-          
+
     let homepage = compiledHomePageTemplate({
-        descriptionShort: "",
-        condition: "",
-        price:"",
-        details:"",
+        "ID": "",
+        "userName":"",
+        "postContent":"",
+        "comments":[],
+        "gif":"",
+        "emoji":""
     })
     
     res.send(homepage) 
@@ -31,8 +70,21 @@ app.get("/blogposts", (req,res) =>{
     let blogData = JSON.parse(rawData)
     console.log(blogData)
     res.render("results",{blogData:blogData})
-    
 })
+
+app.post("/submitPost", (req,res) =>{
+    savePost(req.body);
+    res.send("successfuly added post")
+})
+
+app.post("/addComment",(req,res) =>{
+    console.log(req.body)
+    addComment(req.body);
+    res.send("successfuly added post")
+
+})
+
+
 
 app.listen(PORT);
 console.log("server is listening");

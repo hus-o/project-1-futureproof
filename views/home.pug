@@ -1,40 +1,33 @@
-required:required
-
-DOCTYPE
 html(lang="en")
 
-head
-    link(rel="stylesheet" href="homepageStyles.css")
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title("Document")
+    head
+        link(rel="stylesheet" href="homepageStyles.css")
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title("Document")
+    nav
+        a(href="/blogPosts") !{"blog posts"}
+        
+    body    
+        main
+            form(method="POST" action="/submitPost" name="form")
+        
+                label(for="userName") !{"userName"} 
+                input(type="text" name="userName" id="userName" placeholder="Username" value=userName)
 
-body    
-    main
-        form(method="POST" action="/submitListing" name="form")
+                label(for="postContent") !{"postContent"}
+                textarea(id="postContent" name="postContent" rows="4" cols="50"  maxlength="50" placeholder="Please write post") !{postContent}
+                
+                label(for="gif") !{"gif"} 
+                input(type="text" name="gif" id="gif" placeholder="insert gif url" value=gif)
+                
+                label(for="emoji") !{"emoji"}
+                select(id="emoji" name="emoji" value=emoji)
+                    option(value="smile") !{"smile"}
+                    option(value="sad") !{"sad"}
+                    option(value="random") !{"random"}
+        
+        
+                input(type="submit" name="submit" id="submit" value="submit post")
 
-            label(for="descriptionShort") !{"Description"} 
-            input(type="text" name="descriptionShort" id="descriptionShort" placeholder="Please provide a short description of item" value=descriptionShort)
-
-            label(for="condition") !{"condition"}
-            select(id="condition" name="condition" value=condition)
-                option(value="New") !{"New"}
-                option(value="Opened - never used") !{"Opened – never used"}
-                option(value="Manufacturer refurbished") !{"Manufacturer refurbished"}
-                option(value="Seller refurbished") !{"Seller refurbished"}
-                option(value="Used") !{"Used"}
-                option(value="For parts or not working") !{"For parts or not working"}
-
-    
-            label(for="price") !{"price"}
-            input(type="number" min="0" name="price" id="price" value=price)
-
-            label(for="details") !{"details"}
-            textarea(id="details" name="details" rows="4" cols="50" placeholder="Please provide details of the product") !{details}
-            
-            br
-            input(type="file" name="productImage" id="productImage") 
-            br
-            input(type="submit" name="submit" id="submit" value="submit listing")
-            br
-            script(src='submission.js')
+                script(src='submission.js')

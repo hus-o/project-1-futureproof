@@ -9,6 +9,9 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title("Document")
 
+nav
+    a(href="/blogPosts") !{"blog posts"}
+    
 body
     main
         each blogPost in blogData
@@ -16,3 +19,6 @@ body
                 h5= blogPost.userName
                 p= blogPost.postContent
                 img.sr(src=blogPost.gif, alt="gif")
+                
+                div=blogPost.comments
+                a(href="/addComment") !{"add comment"}
