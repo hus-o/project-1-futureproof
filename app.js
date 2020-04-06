@@ -36,7 +36,7 @@ function savePost(postData){
             arrayOfObjects= []
         }
         
-        arrayOfObjects.push(post)
+        arrayOfObjects.unshift(post)
                 
         fs.writeFile('./db.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
             if (err) throw err
