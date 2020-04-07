@@ -1,24 +1,40 @@
-required:required
-
-DOCTYPE
 html(lang="en")
 
-head
-    link(rel="stylesheet" href="resultsStyles.css")
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title("Document")
 
-nav
-    a(href="/blogPosts") !{"blog posts"}
+    head
+        title("Document")
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="resultsStyles.css")
     
-body
-    main
-        each blogPost in blogData
-            section
-                h5= blogPost.userName
-                p= blogPost.postContent
-                img.sr(src=blogPost.gif, alt="gif")
-                
-                div=blogPost.comments
-                a(href="/addComment") !{"add comment"}
+        script(src="client.js")
+        script(src="https://code.jquery.com/jquery-3.4.1.js")
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+
+
+    nav
+        a(href="/blogPosts") !{"blog posts"}
+        
+    body
+        main
+            each blogPost in blogData
+                section
+                    div(class="leftHandSide")
+                        h5(class="userName")= blogPost.userName
+                        img.sr(src=blogPost.gif, alt="gif")
+                    
+                    div(class="rightHandSide")
+                        p(class="post")= blogPost.postContent
+                        div(class="comments") 
+                                h2(id="commentHead") !{"Comments"}
+                                each comment in blogPost.comments
+                                    p(class="comment")= comment
+                        div(class="commentCollection")
+                        
+                            form(method="POST" action="/addComment" name="addComment") 
+                                input(type="text" name="ID" value=blogPost.ID)
+                                
+                                textarea(name="comment", cols="30", rows="2")
+                                br
+                                input(type="submit" value="add comment")
+                            button(class="toggleComments") !{"Show Comments"}
