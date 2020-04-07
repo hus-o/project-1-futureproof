@@ -18,4 +18,12 @@ document.addEventListener("DOMContentLoaded", function(){
             /* console.log(parsedGIPHYData) */
         })
     }
+    $(".selectable").selectable({
+        selected: function( event, ui ){
+            const urlOfSelected = ui.selected.src;
+            console.log(urlOfSelected)
+            $("#selectedGif").val(urlOfSelected)
+        }
+      });
+
 })

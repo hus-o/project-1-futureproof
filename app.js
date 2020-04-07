@@ -20,7 +20,7 @@ function savePost(postData){
         "userName":postData.userName,
         "postContent": postData.postContent,
         "comments": {},
-        "gif": postData.gif,
+        "gif": postData.selectedGif,
         "emoji": postData.emoji,
     };
 
@@ -69,7 +69,6 @@ app.get("/", (req,res) => {
 app.get("/blogPosts", (req,res) =>{
     let rawData = fs.readFileSync("db.json")
     let blogData = JSON.parse(rawData)
-    console.log(blogData)
     res.render("results",{blogData:blogData})
 })
 
