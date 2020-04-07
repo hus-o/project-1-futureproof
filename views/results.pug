@@ -2,10 +2,11 @@ html(lang="en")
 
 
     head
-        link(rel="stylesheet" href="resultsStyles.css")
+        title("Document")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        title("Document")
+        link(rel="stylesheet" href="resultsStyles.css")
+    
         script(src="client.js")
         script(src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
@@ -19,14 +20,16 @@ html(lang="en")
             each blogPost in blogData
                 section
                     h5= blogPost.userName
-                    p= blogPost.postContent
+                    p(class="post")= blogPost.postContent
                     img.sr(src=blogPost.gif, alt="gif")
                     
-                    each comment in blogPost.comments
-                        p= comment
+                    button(class="toggleComments") !{"Show Comments"}
+                    div(class="comments")
+                        each comment in blogPost.comments
+                            p(class="comment")= comment
                     
                     form(method="POST" action="/addComment" name="addComment") 
                         input(type="text" name="ID" value=blogPost.ID)
-                        textarea(name="comment", cols="30", rows="10")
+                        textarea(name="comment", cols="30", rows="2")
                         
                         input(type="submit" value="add comment")
