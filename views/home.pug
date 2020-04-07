@@ -7,6 +7,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title("Document")
+        script(src="client.js")
+        script(src="https://code.jquery.com/jquery-3.4.1.js")
+        script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
     nav
         a(href="/blogPosts") !{"blog posts"}
@@ -25,7 +28,14 @@ html(lang="en")
                 div(class="gif-search")
                     input(type="text" name="gif" id="gif" placeholder="Search for a gif")
                     input(type="button" name="gifSearch" id="gifSearch" value="Search")
-               
-    
+                
+                div(class="gif-display selectable")
+                    img(id="gif1" class="ui-widget-content" src="")
+                    img(id="gif2" class="ui-widget-content" src="")
+                    img(id="gif3" class="ui-widget-content" src="")
+                    img(id="gif4" class="ui-widget-content" src="")
+                    img(id="gif5" class="ui-widget-content" src="")
+                input(type="hidden" name="selectedGif" id="selectedGif")
+                
                 input(type="submit" name="submit" id="submit" value="Submit post")
 

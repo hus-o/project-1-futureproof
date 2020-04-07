@@ -7,16 +7,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
         console.log(userQuery)
     })
 
-
     function getGIF(userQuery){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
-        /* let usedQuery = query.replace(" ", "&"); */
-        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=25&offset=0&rating=G&lang=en`)
+        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=0&rating=G&lang=en`)
         .then(data => {
-            /* data.request.response */
-            console.log(data.request.response)
+            const parsedGIPHYData = JSON.parse(data.request.responseText)
+            for (let i=0; i < 5; i++){
+                console.log(parsedGIPHYData.data[i].images.fixed_height_small.url)
+                $(`#gif${i+1}`).prop("src", parsedGIPHYData.data[i].images.fixed_height_small.url)
+            }
         })
     }
+  
+    $(".selectable").selectable({
+        selected: function( event, ui ){
+            const urlOfSelected = ui.selected.src;
+            console.log(urlOfSelected)
+            $("#selectedGif").val(urlOfSelected)
+        }
+      });
 
     function setToHidden(nodeLists){
         let ids=nodeLists[0]
@@ -41,7 +50,7 @@ function addIdToButton(nodeLists){
     }
 }
 
-addIdToButton([document.getElementsByClassName("toggleComments")])
+  addIdToButton([document.getElementsByClassName("toggleComments")])
 
 
     function toggleComments(n){
@@ -71,5 +80,6 @@ addIdToButton([document.getElementsByClassName("toggleComments")])
         }
     
     });  
+
 
 })

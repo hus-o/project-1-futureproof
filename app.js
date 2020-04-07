@@ -23,8 +23,8 @@ function savePost(postData){
         "ID": generateRandomId(),
         "userName":postData.userName,
         "postContent": postData.postContent,
-        "comments": " ",
-        "gif": postData.gif,
+        "comments": {},
+        "gif": postData.selectedGif,
         "emoji": postData.emoji,
     };
 
