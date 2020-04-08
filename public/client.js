@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let i=0; i < 5; i++){
                 console.log(parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("src", parsedGIPHYData.data[i].images.fixed_height_small.url)
+                $(`#gif${i+1}`).prop("alt", parsedGIPHYData.data[i].title)
             }
         })
     }
@@ -22,8 +23,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     $(".selectable").selectable({
         selected: function( event, ui ){
             const urlOfSelected = ui.selected.src;
+            const altOfSelected = ui.selected.alt
             console.log(urlOfSelected)
-            $("#selectedGif").val(urlOfSelected)
+            $("#selectedGifURL").val(urlOfSelected)
+            $("#selectedGifALT").val(altOfSelected)
         }
       });
 
