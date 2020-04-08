@@ -1,6 +1,5 @@
 html(lang="en")
 
-
     head
         title("Document")
         meta(charset="UTF-8")
@@ -11,10 +10,10 @@ html(lang="en")
         script(src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 
-
     nav
-        a(href="/blogPosts") !{"blog posts"}
-        
+     
+        a(href="/") !{"Add Blog Post"}
+
     body
         main
             each blogPost in blogData
@@ -25,16 +24,19 @@ html(lang="en")
                     
                     div(class="rightHandSide")
                         p(class="post")= blogPost.postContent
+            
+                        h2(id="commentHead") !{"Comments"}
+            
                         div(class="comments") 
-                                h2(id="commentHead") !{"Comments"}
-                                each comment in blogPost.comments
-                                    p(class="comment")= comment
+                            each comment in blogPost.comments
+                                p(class="comment")= comment
+                        
                         div(class="commentCollection")
                         
-                            form(method="POST" action="/addComment" name="addComment") 
-                                input(type="hidden" name="ID" value=blogPost.ID)
-                                
-                                textarea(name="comment", cols="30", rows="2")
+                            form(method="POST" name="addComment" id="addComment")
+                                input(id="ID" type="hidden" name="ID" value=blogPost.ID)
+                                textarea(id="comment" name="comment", cols="30", rows="2")
                                 br
-                                input(type="submit" value="add comment")
+                                input(type="submit" value="add comment" id="addCommentButton")
+                            
                             button(class="toggleComments") !{"Show Comments"}

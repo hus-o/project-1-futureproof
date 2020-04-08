@@ -1,3 +1,5 @@
+// import { response } from "express";
+
 window.addEventListener('DOMContentLoaded', (event) => {
 
     function getGIF(userQuery){
@@ -12,7 +14,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 
-
     function setToHidden(nodeLists){
         let ids=nodeLists[0]
         ids.forEach(element => {
@@ -21,10 +22,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             };
         })
     }
+
+    function setToRequired(nodeLists){
+        let ids=nodeLists[0]
+        console.log(ids)
+        ids.forEach(element => {
+            if(element.type !== "file"){
+                element.required=true;
+            };
+        })
+    }
     
-
-
-
     function addIdToButton(nodeLists){
         var list = document.getElementsByClassName("toggleComments");
         let i=0;
@@ -35,11 +43,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-
     function toggleComments(n){
-        
         let x=$(".comments")[n];
-        
         console.log($(x).css('display'))
         
         if($(x).css('display') === 'none') {
@@ -50,42 +55,64 @@ window.addEventListener('DOMContentLoaded', (event) => {
          }
     }
 
-    
+
 
     $( document ).ready(function(){
-    $("button").click(function() { 
-        var t = $(this).attr('id'); 
+        $("button").click(function() { 
+            var t = $(this).attr('id'); 
 
-        toggleComments(t)
+            toggleComments(t)
 
-        if($(this).text()==="Show Comments"){
-            $(this).text("Hide Comments")
-        }
-        else if($(this).text()==="Hide Comments"){
-            $(this).text("Show Comments")
-        }
-    
-    });  
+            if($(this).text()==="Show Comments"){
+                $(this).text("Hide Comments")
+            }
+            else if($(this).text()==="Hide Comments"){
+                $(this).text("Show Comments")
+            }
+        
+        });  
 
+        $("#gifSearch").click(event => {
+            event.preventDefault();
+            let userQuery = $("#gif").val();
+            getGIF(userQuery)
+            console.log(userQuery)
+        })
 
-    $("#gifSearch").click(event => {
-        event.preventDefault();
-        let userQuery = $("#gif").val();
-        getGIF(userQuery)
-        console.log(userQuery)
+        $(".selectable").selectable({
+            selected: function( event, ui ){
+                const urlOfSelected = ui.selected.src;
+                console.log(urlOfSelected)
+                $("#selectedGif").val(urlOfSelected)
+            }
+        });
     })
 
-  
-    $(".selectable").selectable({
-        selected: function( event, ui ){
-            const urlOfSelected = ui.selected.src;
-            console.log(urlOfSelected)
-            $("#selectedGif").val(urlOfSelected)
-        }
-      });
-    })
-
-    
-    setToHidden([document.getElementsByName("ID")])
+    setToRequired([document.getElementsByName("comment")])
     addIdToButton([document.getElementsByClassName("toggleComments")])
+    
+    document.getElementById("addComment").addEventListener('submit', function(event){
+        event.preventDefault()
+
+        console.log("hello")
+        let id= document.getElementById("ID").value     
+        let comment =document.getElementById("comment").value
+
+        axios({
+                method: 'POST',
+                url: '/addComment',
+                data: {
+                    'ID': id,
+                    'comment':comment
+                }
+        })
+        .then(
+            console.log("after post")
+            )
+        
+        
+        })
+
+
 })
+    

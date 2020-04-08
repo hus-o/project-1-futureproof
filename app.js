@@ -4,10 +4,12 @@ const pug = require('pug')
 const path = require('path');
 const app= express();
 const fs = require("fs");
+const bodyParser = require("body-parser")
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'views')));
+app.use(bodyParser.json())
 
 app.set('view engine', 'pug')
 
@@ -99,10 +101,10 @@ app.post("/submitPost", (req,res) =>{
 })
 
 app.post("/addComment",(req,res) =>{
+    
     console.log(req.body)
     addComment(req.body);
-    res.redirect("/blogPosts");
-
+    //res.redirect("/blogPosts");
 })
 
 app.listen(PORT);
