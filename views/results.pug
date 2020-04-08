@@ -6,11 +6,10 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="resultsStyles.css")
-    
-        script(src="client.js")
-        script(src="https://code.jquery.com/jquery-3.4.1.js")
-        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
 
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script( type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.js") 
+        script( type='text/javascript' src="client.js")
 
     nav
         a(href="/blogPosts") !{"blog posts"}
@@ -25,6 +24,13 @@ html(lang="en")
                     
                     div(class="rightHandSide")
                         p(class="post")= blogPost.postContent
+                        div(class="emoji")
+                            img(id="love" src="images/Heart Eyes Emoji.png" alt="love emoji")
+                            img(id="surprised" src="images/Hushed Face Emoji.png" alt="surprised emoji")
+                            img(id="cry"  src="images/Crying Face Emoji.png"  alt="cry emoji")
+                            //- p Reactions: <span id="count"></span> 
+                            div(id="count")
+
                         div(class="comments") 
                                 h2(id="commentHead") !{"Comments"}
                                 each comment in blogPost.comments
@@ -38,3 +44,5 @@ html(lang="en")
                                 br
                                 input(type="submit" value="add comment")
                             button(class="toggleComments") !{"Show Comments"}
+
+                        

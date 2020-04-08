@@ -1,5 +1,86 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+   
+     // emoji-section
+
+     //let counter = 0;
+    $('section').each(function(){
+     let clickCounter = () => {
+        if (typeof(Storage) !== "undefined") {
+            if (localStorage.clickcount) {
+              localStorage.clickcount = Number(localStorage.clickcount)+1;
+            } else {
+              localStorage.clickcount = 1;
+            }
+            document.getElementById("count").innerHTML = "Reactions: " + localStorage.clickcount;
+        } else {
+          document.getElementById("count").innerHTML = "Sorry, your browser does not support web storage...";
+        }
+     }
+
+     $('#love').click(function() {
+        $(this).addClass('selected');
+        clickCounter()
+        // counter++
+        // $('#count').text(counter);
+        $(this).css({
+            'width' : $(this).width()  + 1,
+            'height': $(this).width()  + 1
+        });
+    });
+
+    $("#love").hover(function(){
+        $(this).attr("src", "images/Growing Pink Heart Emoji.png");
+        }, function(){
+        $(this).attr("src", "images/Heart Eyes Emoji.png");
+      })
+
+    $('#surprised').click(function() {
+       $(this).addClass('selected');
+       clickCounter()
+    //    counter++
+    //    $('#count').text(counter);
+       $(this).css({
+        'width' : $(this).width()  + 1,
+        'height': $(this).width()  + 1 
+        });
+    });
+
+    $("#surprised").hover(function(){
+        $(this).attr("src", "images/Surprised Face Emoji.png");
+        }, function(){
+        $(this).attr("src", "images/Hushed Face Emoji.png");
+      })
+    $('#cry').click(function() {
+        $(this).addClass('selected');
+        clickCounter()
+        // counter++
+        // $('#count').text(counter);
+        $(this).css({
+            'width' : $(this).width()  + 1,
+            'height': $(this).width()  + 1
+        });
+    });
     
+    $("#cry").hover(function(){
+        $(this).attr("src", "images/Loudly Crying Face Emoji.png");
+        }, function(){
+        $(this).attr("src", "images/Crying Face Emoji.png");
+      });
+    });
+    // end of emoji-section
+
+
+
+
+
+
+
+
+
+
+
+
+
     $("#gifSearch").click(event => {
         event.preventDefault();
         let userQuery = $("#gif").val();
@@ -79,7 +160,10 @@ function addIdToButton(nodeLists){
             $(this).text("Show Comments")
         }
     
-    });  
+    }); 
+    
+   
+
 
 
 })
