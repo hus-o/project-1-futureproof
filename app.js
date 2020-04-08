@@ -27,7 +27,7 @@ function savePost(postData){
         "userName":postData.userName,
         "postContent": postData.postContent,
         "comments": " ",
-        "gif": postData.selectedGif,
+        "gif": {url:postData.selectedGifURL, title:postData.selectedGifALT},
         "emoji": postData.emoji,
     };
 

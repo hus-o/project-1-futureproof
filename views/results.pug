@@ -5,10 +5,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="resultsStyles.css")
-    
-        script(src="client.js")
-        script(src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script( type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.js") 
+        script( type='text/javascript' src="client.js")
 
     nav
      
@@ -20,13 +19,11 @@ html(lang="en")
                 section
                     div(class="leftHandSide")
                         h5(class="userName")= blogPost.userName
-                        img.sr(src=blogPost.gif, alt="gif")
+                        img(src=blogPost.gif.url, alt=blogPost.gif.title)
                     
                     div(class="rightHandSide")
                         p(class="post")= blogPost.postContent
-            
                         h2(id="commentHead") !{"Comments"}
-            
                         div(class="comments") 
                             each comment in blogPost.comments
                                 p(class="comment")= comment
@@ -38,5 +35,5 @@ html(lang="en")
                                 textarea(id="comment" name="comment", cols="30", rows="2")
                                 br
                                 input(type="submit" value="add comment" id="addCommentButton")
-                            
+                                input(type="submit" value="add comment")
                             button(class="toggleComments") !{"Show Comments"}
