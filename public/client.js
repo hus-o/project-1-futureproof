@@ -47,28 +47,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
             };
         })
     }
-    
-    var idInputs=document.getElementsByName("ID")
-    setToHidden([idInputs])
 
-
-function addIdToButton(nodeLists){
-    var list = document.getElementsByClassName("toggleComments");
-    let i=0;
-    for (let item of list) {
-        let att = document.createAttribute("id");   
-        att.value = i++
-        item.setAttributeNode(att)
+    function setToRequired(nodeLists){
+        let ids=nodeLists[0]
+        console.log(ids)
+        ids.forEach(element => {
+            if(element.type !== "file"){
+                element.required=true;
+            };
+        })
     }
-}
-
-  addIdToButton([document.getElementsByClassName("toggleComments")])
-
+    
+    function addIdToButton(nodeLists){
+        var list = document.getElementsByClassName("toggleComments");
+        let i=0;
+        for (let item of list) {
+            let att = document.createAttribute("id");   
+            att.value = i++
+            item.setAttributeNode(att)
+        }
+    }
 
     function toggleComments(n){
-        
         let x=$(".comments")[n];
-        
         console.log($(x).css('display'))
         
         if($(x).css('display') === 'none') {
@@ -79,22 +80,82 @@ function addIdToButton(nodeLists){
          }
     }
 
-    $("button").click(function() { 
-        var t = $(this).attr('id'); 
 
-        toggleComments(t)
 
-        if($(this).text()==="Show Comments"){
-            $(this).text("Hide Comments")
-        }
-        else if($(this).text()==="Hide Comments"){
-            $(this).text("Show Comments")
-        }
+    $( document ).ready(function(){
+        $("button").click(function() { 
+            var t = $(this).attr('id'); 
+
+            toggleComments(t)
+
+            if($(this).text()==="Show Comments"){
+                $(this).text("Hide Comments")
+            }
+            else if($(this).text()==="Hide Comments"){
+                $(this).text("Show Comments")
+            }
+        
+        });  
+
+        $("#gifSearch").click(event => {
+            event.preventDefault();
+            let userQuery = $("#gif").val();
+            getGIF(userQuery)
+            console.log(userQuery)
+        })
+
+        $(".selectable").selectable({
+            selected: function( event, ui ){
+                const urlOfSelected = ui.selected.src;
+                console.log(urlOfSelected)
+                $("#selectedGif").val(urlOfSelected)
+            }
+        });
+    })
+
+    setToRequired([document.getElementsByName("comment")])
+    addIdToButton([document.getElementsByClassName("toggleComments")])
     
+    document.getElementById("addComment").addEventListener('submit', function(event){
+        event.preventDefault()
+
+        var id= document.getElementById("ID").value     
+        let comment =document.getElementById("comment").value
     }); 
-    
-   
 
+        axios({
+                method: 'POST',
+                url: '/addComment',
+                data: {
+                    'ID': id,
+                    'comment':comment
+                }
+        }).
+        then(response=>{
+
+            console.log("after post")
+            console.log("res=",response)
+
+            axios({
+                method: 'POST',
+                url: '/comments',
+                data: {
+                    'ID': id,
+                }
+            })
+            .then(response=>{
+                console.log("curr id", id)
+                console.log("res2" ,response)
+
+                $(`input[value=${id}]`).parentsUntil("section").find(".comments").append(`<p class=comment>${response.data}</p>`)
+            })
+        
+        })
+       
+        
+        
+        })
 
 
 })
+    

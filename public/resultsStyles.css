@@ -6,11 +6,6 @@ form, .username{
     display: flex;
 }
 
-button{
-    width:100px;
-}
-
-
 body{
     height:100%;
     display:flex;
@@ -28,40 +23,36 @@ main{
 section{
     display: flex;
     justify-content: space-between;
-    /* width:500px; */
     border: 2px solid black;
     text-align: center;
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
 
 img{
-  
     width:100px;
     height:100px;
 }
 
-
 #commentHead{
-
-    font-family: Georgia,
-
+    font-family: Georgia;
+    text-align: left;
 }
 
 .comments{
     display: none; 
     text-align: left;
-    margin: 5px;
-    padding: 5px 5px 5px 5px;
-    background-color:pink;
+    padding-left: 10%;
+    
 }
+
 .comment{
-    background-color: aqua;
-    border: 4px solid black;
-    margin: 1% 1% 1% 1%
+    width: 300px;
+    margin: 1% 1% 1% 1%;
+    border-bottom-style: groove;
+    border-bottom-color: lightgrey;
 }
 
 .post{
-    /* display: flex; */
     background-color: lightgrey;
     border-radius: 6px;
     margin: 2% 2% 2% 2%;
@@ -80,13 +71,10 @@ section > h5{
     padding: 5px;
 }
 
-
-
 .rightHandSide{
     display: flex;
     flex-direction: column;
     justify-content: left;
-    /* width: 500px; */
     margin: 5px;
     padding: 5px;
 
@@ -97,14 +85,22 @@ section > h5{
     display: flex;
 }
 
-/* emoji-section */
 
-.emoji img {
-    width: 35px;
-    height: 35px;
+textarea{
+    outline: none;
+    margin-bottom: 20px;
+    border: 1px solid lightgrey;
+    border-bottom: 4px solid lightgrey;
 }
 
-img.selected {
-    width: 40px;
-    max-width: 60px;
+button{
+    height: 60px;
+}
+
+
+nav{
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    position: fixed;
 }

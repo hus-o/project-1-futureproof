@@ -1,19 +1,18 @@
 html(lang="en")
 
-
     head
         title("Document")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="resultsStyles.css")
-
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
         script( type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.js") 
         script( type='text/javascript' src="client.js")
 
     nav
-        a(href="/blogPosts") !{"blog posts"}
-        
+     
+        a(href="/") !{"Add Blog Post"}
+
     body
         main
             each blogPost in blogData
@@ -24,25 +23,17 @@ html(lang="en")
                     
                     div(class="rightHandSide")
                         p(class="post")= blogPost.postContent
-                        div(class="emoji")
-                            img(id="love" src="images/Heart Eyes Emoji.png" alt="love emoji")
-                            img(id="surprised" src="images/Hushed Face Emoji.png" alt="surprised emoji")
-                            img(id="cry"  src="images/Crying Face Emoji.png"  alt="cry emoji")
-                            //- p Reactions: <span id="count"></span> 
-                            div(id="count")
-
+                        h2(id="commentHead") !{"Comments"}
                         div(class="comments") 
-                                h2(id="commentHead") !{"Comments"}
-                                each comment in blogPost.comments
-                                    p(class="comment")= comment
+                            each comment in blogPost.comments
+                                p(class="comment")= comment
+                        
                         div(class="commentCollection")
                         
-                            form(method="POST" action="/addComment" name="addComment") 
-                                input(type="text" name="ID" value=blogPost.ID)
-                                
-                                textarea(name="comment", cols="30", rows="2")
+                            form(name="addComment" id="addComment")
+                                input(id="ID" type="hidden" name="ID" value=blogPost.ID)
+                                textarea(id="comment" name="comment", cols="30", rows="2")
                                 br
+                                input(type="submit" value="add comment" id="addCommentButton")
                                 input(type="submit" value="add comment")
                             button(class="toggleComments") !{"Show Comments"}
-
-                        
