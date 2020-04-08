@@ -23,7 +23,7 @@ function savePost(postData){
         "ID": generateRandomId(),
         "userName":postData.userName,
         "postContent": postData.postContent,
-        "comments": {},
+        "comments": " ",
         "gif": postData.selectedGif,
         "emoji": postData.emoji,
     };
@@ -46,7 +46,6 @@ function savePost(postData){
 
 }
 
-
 function addComment(postComment){
   
     fs.readFile('./db.json', 'utf-8', function(err, data) {
@@ -66,7 +65,6 @@ function addComment(postComment){
 
         arrayOfObjects.find(x => x.ID === postComment.ID).comments.push(postComment.comment)
 
-            
         fs.writeFile('./db.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
             if (err) throw err
             console.log('post added to db.json')
@@ -81,7 +79,7 @@ app.get("/", (req,res) => {
         "ID": "",
         "userName":"",
         "postContent":"",
-        "comments":[],
+        "comments": " ",
         "gif":"",
         "emoji":""
     })
@@ -106,8 +104,6 @@ app.post("/addComment",(req,res) =>{
     res.redirect("/blogPosts");
 
 })
-
-
 
 app.listen(PORT);
 console.log("server is listening");
