@@ -1,101 +1,30 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-   
-     // emoji-section
-
-     //let counter = 0;
-    $('section').each(function(){
-     let clickCounter = () => {
-        if (typeof(Storage) !== "undefined") {
-            if (localStorage.clickcount) {
-              localStorage.clickcount = Number(localStorage.clickcount)+1;
-            } else {
-              localStorage.clickcount = 1;
-            }
-            document.getElementById("count").innerHTML = "Reactions: " + localStorage.clickcount;
-        } else {
-          document.getElementById("count").innerHTML = "Sorry, your browser does not support web storage...";
-        }
-     }
-
-     $('#love').click(function() {
-        $(this).addClass('selected');
-        clickCounter()
-        // counter++
-        // $('#count').text(counter);
-        $(this).css({
-            'width' : $(this).width()  + 1,
-            'height': $(this).width()  + 1
-        });
-    });
-
-    $("#love").hover(function(){
-        $(this).attr("src", "images/Growing Pink Heart Emoji.png");
-        }, function(){
-        $(this).attr("src", "images/Heart Eyes Emoji.png");
-      })
-
-    $('#surprised').click(function() {
-       $(this).addClass('selected');
-       clickCounter()
-    //    counter++
-    //    $('#count').text(counter);
-       $(this).css({
-        'width' : $(this).width()  + 1,
-        'height': $(this).width()  + 1 
-        });
-    });
-
-    $("#surprised").hover(function(){
-        $(this).attr("src", "images/Surprised Face Emoji.png");
-        }, function(){
-        $(this).attr("src", "images/Hushed Face Emoji.png");
-      })
-    $('#cry').click(function() {
-        $(this).addClass('selected');
-        clickCounter()
-        // counter++
-        // $('#count').text(counter);
-        $(this).css({
-            'width' : $(this).width()  + 1,
-            'height': $(this).width()  + 1
-        });
-    });
-    
-    $("#cry").hover(function(){
-        $(this).attr("src", "images/Loudly Crying Face Emoji.png");
-        }, function(){
-        $(this).attr("src", "images/Crying Face Emoji.png");
-      });
-    });
-    // end of emoji-section
-
-
-
-
-
-
-
-
-
-
-
-
-
+    let offset = 0
     $("#gifSearch").click(event => {
         event.preventDefault();
         let userQuery = $("#gif").val();
-        getGIF(userQuery)
+        getGIF(userQuery, offset)
         console.log(userQuery)
     })
 
-    function getGIF(userQuery){
+    $("#loadMore").click(event => {
+        event.preventDefault();
+        let userQuery = $("#gif").val();
+        offset += 5
+        console.log(offset)
+        getGIF(userQuery, offset)
+        console.log(userQuery)
+    })
+
+    function getGIF(userQuery,offset){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
-        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=6&offset=0&rating=G&lang=en`)
+        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=${offset}&rating=G&lang=en`)
         .then(data => {
             const parsedGIPHYData = JSON.parse(data.request.responseText)
             for (let i=0; i < 6; i++){
                 console.log(parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("src", parsedGIPHYData.data[i].images.fixed_height_small.url)
+                $(`#gif${i+1}`).prop("alt", parsedGIPHYData.data[i].title)
             }
         })
     }
@@ -103,8 +32,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     $(".selectable").selectable({
         selected: function( event, ui ){
             const urlOfSelected = ui.selected.src;
+            const altOfSelected = ui.selected.alt
             console.log(urlOfSelected)
-            $("#selectedGif").val(urlOfSelected)
+            $("#selectedGifURL").val(urlOfSelected)
+            $("#selectedGifALT").val(altOfSelected)
         }
       });
 

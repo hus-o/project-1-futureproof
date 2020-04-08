@@ -33,13 +33,15 @@ html(lang="en")
                     input(type="button" name="gifSearch" id="gifSearch" value="Search")
                 
                 div(class="gif-display selectable")
-                    img(id="gif1" class="ui-widget-content" src="")
-                    img(id="gif2" class="ui-widget-content" src="")
-                    img(id="gif3" class="ui-widget-content" src="")
-                    img(id="gif4" class="ui-widget-content" src="")
-                    img(id="gif5" class="ui-widget-content" src="")
-                    img(id="gif6" class="ui-widget-content" src="")
-                input(type="hidden" name="selectedGif" id="selectedGif")
+                    img(id="gif1" class="ui-widget-content" src="" alt="")
+                    img(id="gif2" class="ui-widget-content" src="" alt="")
+                    img(id="gif3" class="ui-widget-content" src="" alt="")
+                    img(id="gif4" class="ui-widget-content" src="" alt="")
+                    img(id="gif5" class="ui-widget-content" src="" alt="")
+                input(type="button" name="loadMore" id="loadMore" value="New GIFs Please")
+                input(type="hidden" name="selectedGifURL" id="selectedGifURL")
+                input(type="hidden" name="selectedGifALT" id="selectedGifALT")
+
                 
                 input(type="submit" name="submit" id="submit" value="Submit post")
 

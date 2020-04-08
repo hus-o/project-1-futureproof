@@ -20,7 +20,7 @@ html(lang="en")
                 section
                     div(class="leftHandSide")
                         h5(class="userName")= blogPost.userName
-                        img.sr(src=blogPost.gif, alt="gif")
+                        img(src=blogPost.gif.url, alt=blogPost.gif.title)
                     
                     div(class="rightHandSide")
                         p(class="post")= blogPost.postContent
