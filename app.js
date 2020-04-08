@@ -75,7 +75,6 @@ function addComment(postComment){
     })
 }
 
-
 function getComments(postComment){
 
     return new Promise(resolve=>{
@@ -125,8 +124,7 @@ app.post("/addComment",(req,res) =>{
 app.post("/comments", (req,res)=>{
     console.log("in the comments function")
 
-    getComments(req.body).then((result) => {
-    
+    getComments(req.body).then((result) =>{
         res.send(result);
     })
 })
