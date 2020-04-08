@@ -1,11 +1,4 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    
-    $("#gifSearch").click(event => {
-        event.preventDefault();
-        let userQuery = $("#gif").val();
-        getGIF(userQuery)
-        console.log(userQuery)
-    })
 
     function getGIF(userQuery){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
@@ -18,14 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         })
     }
-  
-    $(".selectable").selectable({
-        selected: function( event, ui ){
-            const urlOfSelected = ui.selected.src;
-            console.log(urlOfSelected)
-            $("#selectedGif").val(urlOfSelected)
-        }
-      });
+
 
     function setToHidden(nodeLists){
         let ids=nodeLists[0]
@@ -36,21 +22,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })
     }
     
-    var idInputs=document.getElementsByName("ID")
-    setToHidden([idInputs])
 
 
-function addIdToButton(nodeLists){
-    var list = document.getElementsByClassName("toggleComments");
-    let i=0;
-    for (let item of list) {
-        let att = document.createAttribute("id");   
-        att.value = i++
-        item.setAttributeNode(att)
+
+    function addIdToButton(nodeLists){
+        var list = document.getElementsByClassName("toggleComments");
+        let i=0;
+        for (let item of list) {
+            let att = document.createAttribute("id");   
+            att.value = i++
+            item.setAttributeNode(att)
+        }
     }
-}
-
-  addIdToButton([document.getElementsByClassName("toggleComments")])
 
 
     function toggleComments(n){
@@ -67,6 +50,9 @@ function addIdToButton(nodeLists){
          }
     }
 
+    
+
+    $( document ).ready(function(){
     $("button").click(function() { 
         var t = $(this).attr('id'); 
 
@@ -82,4 +68,24 @@ function addIdToButton(nodeLists){
     });  
 
 
+    $("#gifSearch").click(event => {
+        event.preventDefault();
+        let userQuery = $("#gif").val();
+        getGIF(userQuery)
+        console.log(userQuery)
+    })
+
+  
+    $(".selectable").selectable({
+        selected: function( event, ui ){
+            const urlOfSelected = ui.selected.src;
+            console.log(urlOfSelected)
+            $("#selectedGif").val(urlOfSelected)
+        }
+      });
+    })
+
+    
+    setToHidden([document.getElementsByName("ID")])
+    addIdToButton([document.getElementsByClassName("toggleComments")])
 })

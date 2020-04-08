@@ -32,7 +32,7 @@ html(lang="en")
                         div(class="commentCollection")
                         
                             form(method="POST" action="/addComment" name="addComment") 
-                                input(type="text" name="ID" value=blogPost.ID)
+                                input(type="hidden" name="ID" value=blogPost.ID)
                                 
                                 textarea(name="comment", cols="30", rows="2")
                                 br
