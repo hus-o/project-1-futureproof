@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-        let offset = 0
+    let offset = 0
     $("#gifSearch").click(event => {
         event.preventDefault();
         let userQuery = $("#gif").val();
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=${offset}&rating=G&lang=en`)
         .then(data => {
             const parsedGIPHYData = JSON.parse(data.request.responseText)
-            for (let i=0; i < 5; i++){
+            for (let i=0; i < 6; i++){
                 console.log(parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("src", parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("alt", parsedGIPHYData.data[i].title)
@@ -91,7 +91,10 @@ function addIdToButton(nodeLists){
             $(this).text("Show Comments")
         }
     
-    });  
+    }); 
+    
+   
+
 
 
 })

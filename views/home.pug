@@ -11,21 +11,24 @@ html(lang="en")
         script(src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
-    nav
-        a(href="/blogPosts") !{"blog posts"}
-        
-    body    
+    
+    body
+        nav
+            h3(class="pageTitle") !{"HeliHufa"}
+            a(href="/blogPosts") !{"View Posts"}
         main
             form(method="POST" action="/submitPost" name="form")
-        
-                label(for="userName") !{"userName"} 
-                input(type="text" name="userName" id="userName" placeholder="Username" value=userName)
 
-                label(for="postContent") !{"postContent"}
+                div(class="sideBySide")
+                    label(for="userName") !{"Username: "} 
+                    input(type="text" name="userName" id="userName" placeholder="Username" value=userName)
+
+                label(for="postContent") !{"Post:"}
                 textarea(id="postContent" name="postContent" rows="4" cols="50"  maxlength="50" placeholder="Please write post") !{postContent}
                 
-                label(for="gif") !{"gif"} 
-                div(class="gif-search")
+                
+                div(class="sideBySide")
+                    label(for="gif") !{"GIF: "} 
                     input(type="text" name="gif" id="gif" placeholder="Search for a gif")
                     input(type="button" name="gifSearch" id="gifSearch" value="Search")
                 
@@ -38,6 +41,7 @@ html(lang="en")
                 input(type="button" name="loadMore" id="loadMore" value="New GIFs Please")
                 input(type="hidden" name="selectedGifURL" id="selectedGifURL")
                 input(type="hidden" name="selectedGifALT" id="selectedGifALT")
+
                 
                 input(type="submit" name="submit" id="submit" value="Submit post")
 
