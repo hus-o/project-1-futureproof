@@ -96,3 +96,15 @@ section > h5{
 .commentCollection{
     display: flex;
 }
+
+/* emoji-section */
+
+.emoji img {
+    width: 35px;
+    height: 35px;
+}
+
+img.selected {
+    width: 40px;
+    max-width: 60px;
+}
