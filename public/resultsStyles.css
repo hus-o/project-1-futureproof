@@ -39,10 +39,9 @@ img{
 }
 
 .comments{
-    display: none; 
+    display: none;
     text-align: left;
-    padding-left: 10%;
-    
+    padding-left: 10%;  
 }
 
 .comment{
