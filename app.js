@@ -77,14 +77,17 @@ function addComment(postComment){
 
 
 function getComments(postComment){
-    fs.readFile('./db.json', 'utf-8', function(err, data) {
-        if (err) throw err
-        var arrayOfObjects = JSON.parse(data)
-        let allComments = arrayOfObjects.find(x =>x.ID === postComment.ID).comments
-        var lastAddedComment= allComments.pop()
-        console.log("last added", lastAddedComment)
-        return lastAddedComment
-    })   
+
+    return new Promise(resolve=>{
+        fs.readFile('./db.json', 'utf-8', function(err, data) {
+            if (err) throw err
+            var arrayOfObjects = JSON.parse(data)
+            let allComments = arrayOfObjects.find(x =>x.ID === postComment.ID).comments
+            var lastAddedComment= allComments.pop()
+            console.log("last added", lastAddedComment)
+            resolve(lastAddedComment)
+        })   
+    })
 }
 
 
@@ -122,10 +125,10 @@ app.post("/addComment",(req,res) =>{
 app.post("/comments", (req,res)=>{
     console.log("in the comments function")
 
-    // console.log("in post func", lastComment)
-    getComments(req.body)
-    res.send("asasda");
-
+    getComments(req.body).then((result) => {
+    
+        res.send(result);
+    })
 })
 
 app.listen(PORT);

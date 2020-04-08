@@ -121,7 +121,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 console.log("curr id", id)
                 console.log("res2" ,response)
 
-                $(`input[value=${id}]`).parentsUntil("section").find(".comments").append("Jasjbhjsa")
+                $(`input[value=${id}]`).parentsUntil("section").find(".comments").append(`<p class=comment>${response.data}</p>`)
             })
         
         })
