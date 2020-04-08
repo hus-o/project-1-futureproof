@@ -1,15 +1,24 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    
+        let offset = 0
     $("#gifSearch").click(event => {
         event.preventDefault();
         let userQuery = $("#gif").val();
-        getGIF(userQuery)
+        getGIF(userQuery, offset)
         console.log(userQuery)
     })
 
-    function getGIF(userQuery){
+    $("#loadMore").click(event => {
+        event.preventDefault();
+        let userQuery = $("#gif").val();
+        offset += 5
+        console.log(offset)
+        getGIF(userQuery, offset)
+        console.log(userQuery)
+    })
+
+    function getGIF(userQuery,offset){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
-        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=0&rating=G&lang=en`)
+        axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=${offset}&rating=G&lang=en`)
         .then(data => {
             const parsedGIPHYData = JSON.parse(data.request.responseText)
             for (let i=0; i < 5; i++){
