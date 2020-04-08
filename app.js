@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'views')));
 app.use(bodyParser.json())
 
+
 app.set('view engine', 'pug')
 
 const compiledHomePageTemplate = pug.compileFile('views/home.pug');
@@ -75,6 +76,18 @@ function addComment(postComment){
 }
 
 
+function getComments(postComment){
+    fs.readFile('./db.json', 'utf-8', function(err, data) {
+        if (err) throw err
+        var arrayOfObjects = JSON.parse(data)
+        let allComments = arrayOfObjects.find(x =>x.ID === postComment.ID).comments
+        var lastAddedComment= allComments.pop()
+        console.log("last added", lastAddedComment)
+        return lastAddedComment
+    })   
+}
+
+
 app.get("/", (req,res) => {
 
     let homepage = compiledHomePageTemplate({
@@ -101,10 +114,18 @@ app.post("/submitPost", (req,res) =>{
 })
 
 app.post("/addComment",(req,res) =>{
-    
     console.log(req.body)
     addComment(req.body);
-    //res.redirect("/blogPosts");
+    res.end()
+})
+
+app.post("/comments", (req,res)=>{
+    console.log("in the comments function")
+
+    // console.log("in post func", lastComment)
+    getComments(req.body)
+    res.send("asasda");
+
 })
 
 app.listen(PORT);

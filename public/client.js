@@ -94,8 +94,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("addComment").addEventListener('submit', function(event){
         event.preventDefault()
 
-        console.log("hello")
-        let id= document.getElementById("ID").value     
+        var id= document.getElementById("ID").value     
         let comment =document.getElementById("comment").value
 
         axios({
@@ -105,10 +104,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     'ID': id,
                     'comment':comment
                 }
-        })
-        .then(
+        }).
+        then(response=>{
+
             console.log("after post")
-            )
+            console.log("res=",response)
+
+            axios({
+                method: 'POST',
+                url: '/comments',
+                data: {
+                    'ID': id,
+                }
+            })
+            .then(response=>{
+                console.log("curr id", id)
+                console.log("res2" ,response)
+
+                $(`input[value=${id}]`).parentsUntil("section").find(".comments").append("Jasjbhjsa")
+            })
+        
+        })
+       
         
         
         })
