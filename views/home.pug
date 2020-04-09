@@ -9,9 +9,10 @@ html(lang="en")
         script(src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
     body
         nav
-            h3(class="pageTitle") !{"HeliHufa"}
+            h1(class="pageTitle") !{"HeliHufa"}
             a(href="/blogPosts") !{"View Posts"}
 
         main
@@ -21,8 +22,8 @@ html(lang="en")
                     label(for="userName") !{"Username: "} 
                     input(type="text" name="userName" id="userName" placeholder="Username" value=userName)
 
-                label(for="postContent") !{"Post:"}
-                textarea(id="postContent" name="postContent" rows="4" cols="50"  maxlength="50" placeholder="Please write post") !{postContent}
+                //- label(for="postContent") !{"Post:"}
+                textarea(id="postContent" name="postContent" rows="4" cols="50"  maxlength="140" placeholder="Please write post") !{postContent}
                 
                 
                 div(class="sideBySide")

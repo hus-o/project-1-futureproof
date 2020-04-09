@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
         let userQuery = $("#gif").val();
         getGIF(userQuery, offset)
+         $("#loadMore").css("display", "flex");
         console.log(userQuery)
     })
 
@@ -74,7 +75,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     
     $(document).ready(function(){
-
+ 
     $(".toggleComments").click(function() { 
         var t = $(this).attr('id'); 
 
