@@ -8,6 +8,8 @@ html(lang="en")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
         script( type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.js") 
         script( type='text/javascript' src="client.js")
+        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+
 
     nav
      
@@ -15,7 +17,7 @@ html(lang="en")
 
     body
         nav
-            h3(class="pageTitle") !{"HeliHufa"}
+            h1(class="pageTitle") !{"HeliHufa"}
             a(href="/") !{"Add Blog Post"}
 
         main
@@ -38,5 +40,5 @@ html(lang="en")
                                 input(id="ID" type="hidden" name="ID" value=blogPost.ID)
                                 textarea(id="comment" name="comment", cols="30", rows="2")
                                 br
-                                input(type="submit" class="commentBtn" value="add comment" id="addCommentButton")
-                            button(class="commentBtn") !{"Show Comments"}
+                                input(type="submit" value="add comment" id="addCommentButton")
+                            button(class="toggleComments") !{"Show Comments"}

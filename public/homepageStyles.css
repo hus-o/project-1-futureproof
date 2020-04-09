@@ -8,27 +8,31 @@ body{
     height:100%;
     flex-direction: column;
 }
+h1{
+    font-size: 3em;
+    font-family: 'Dosis', sans-serif;
+
+}
 
 nav{
-    background-color: #FFDAB9;
-    color: #384977;
+    background-color: #E7D1E2;
+    color: #2C436D;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
-    border-bottom: 2px solid #71989B;
+    border-bottom: 2px solid #F3D59F;
 }
 
 main{
-    background-color: #B1B9CD;
+    background-image: linear-gradient(#757BA7,#A2A6C6, #D0D3E3);
     height: 100%;
-    width: 100%;
+    min-width: 100%;
+    width:auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,20 +41,25 @@ main{
 
 
 form{
-    width: 33%;
-    height: 60%;
-    background-color: #FFE8B9;
-    color: #2D666B;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border: solid 3px black;
+    background-color: #CDA2C3;
+    color: #2C436D;
+    font-family: 'Dosis', sans-serif;
+    border: solid 2px #F3D59F;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     padding-bottom: 5px;
-   
+    height: auto;
+    width: auto;
+    min-height: 60%;
+    max-width: 50%;
+    padding: 3px;
+
+
 }
+
 label{
     padding-right: 5px;
 }
@@ -60,20 +69,21 @@ label{
 
 }
 
-.pageTitle{
-    text-decoration: underline;
-}
+
 
 div.gif-display{
     display:flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 5px;
+    height: auto;
+    width: auto;
+    max-width: 40%;
 }
-img{
+img{    
     margin-left: 2px;
     margin-right: 2px;
+    max-width: 33%;
+    max-height: 33%;
 }
 .selectable .ui-selecting {
     border: 2px dashed #8b8a2f;
@@ -84,6 +94,31 @@ img{
     -webkit-box-shadow: 0px 0px 8px 0px rgb(83, 180, 64);
     -moz-box-shadow: 0px 0px 8px 0px rgba(83, 180, 64);
     box-shadow: 0px 0px 8px 0px rgba(83, 180, 64);
-  }
+}
+[type="button"], #submit {
+    box-shadow: 0px 10px 14px -7px #e7d1e2;
+	background-color:#eaf6c3;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#787477;
+	font-family:Arial;
+	font-weight:bold;
+	/* padding:13px 32px; */
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e7d1e2;
+}
+
+
+#submit{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#loadMore{
+    display: none;
+}
+
+
 
 

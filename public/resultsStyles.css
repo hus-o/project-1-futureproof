@@ -7,43 +7,47 @@ form, .username{
 }
 
 body{
-    height:100%;
+    min-height:100%;
     display:flex;
     flex-direction: column;
     align-items: center;
-    background-color: #B1B9CD;
+    background-image: linear-gradient(#757BA7,#A2A6C6, #D0D3E3);
+}
+h1{
+    font-size: 3em;
+    font-family: 'Dosis', sans-serif;
+
 }
 
 nav{
-    background-color: #FFDAB9;
-    color: #384977;
+    background-color: #E7D1E2;
+    color: #2C436D;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
-    border-bottom: 2px solid #71989B;
+    border-bottom: 2px solid #F3D59F;
 }
 
 main{
     display:flex;
     flex-direction: column;
-    padding-top: 5%;
+    padding-top: 8%;
     justify-content: space-between;
 }
 
 section{
     display: flex;
     justify-content: space-between;
-    border: 2px solid black;
+    border: 2px solid #F3D59F;
     text-align: center;
     margin-bottom: 5px;
-    background-color: #FFE8B9;
+    background-color: #CDA2C3;
+    font-family: 'Dosis', sans-serif;
 }
 
 img{
@@ -51,13 +55,12 @@ img{
     height:100px;
 }
 
-.pageTitle{
-    text-decoration: underline;
-}
+
 
 #commentHead{
-    font-family: Georgia;
     text-align: left;
+    color: #2C436D;
+
 }
 
 .comments{
@@ -74,9 +77,12 @@ img{
 }
 
 .post{
-    background-color: lightgrey;
+    background-color: #F5FBE3;
     border-radius: 6px;
     margin: 2% 2% 2% 2%;
+    padding-bottom: 3px;
+    color: #2C436D;
+
 
 }
 
@@ -104,6 +110,8 @@ section > h5{
 
 .commentCollection{
     display: flex;
+    font-family: 'Dosis', sans-serif;
+    color: #2C436D
 }
 
 
@@ -124,4 +132,18 @@ nav{
     left: 0; 
     width: 100%;
     position: fixed;
+}
+/* button design */
+ [type="submit"], button{
+    box-shadow: 0px 10px 14px -7px #e7d1e2;
+	background-color:#eaf6c3;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#787477;
+	font-family:Arial;
+	font-weight:bold;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #e7d1e2; 
+    height: 25px;
 }

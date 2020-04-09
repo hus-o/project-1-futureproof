@@ -61,7 +61,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         $("#gifSearch").click(event => {
             event.preventDefault();
             let userQuery = $("#gif").val();
-            getGIF(userQuery, offset)
+            getGIF(userQuery, offset);
+            $("#loadMore").css("display", "flex");
             console.log(userQuery)
         })
     
