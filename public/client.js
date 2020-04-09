@@ -83,6 +83,8 @@ $(document).ready(function(){
     });  
 
     $(".addComment").click(function(event) {
+    //$("#addCommen").click(function(event) {
+     
         event.preventDefault();
         console.log("you clicked the button")
 
@@ -109,6 +111,7 @@ $(document).ready(function(){
                 }
             })
             .then(response=>{
+                $(`input[value=${id}]`).parentsUntil("section").find("textArea").val("");
                 $(`input[value=${id}]`).parentsUntil("section").find(".comments").append(`<p class=comment>${response.data}</p>`)
             })
         })
