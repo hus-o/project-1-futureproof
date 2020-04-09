@@ -5,12 +5,11 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="resultsStyles.css")
+        link(href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
         script( type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.js")
         script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
-        script( type='text/javascript' src="client.js")
-        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
-
+        script(src="client.js")
 
     nav
      
@@ -36,10 +35,9 @@ html(lang="en")
                                 p(class="comment")= comment
                         
                         div(class="commentCollection")
-                        
                             form(name="addComment" id="addComment")
                                 input(id="ID" type="hidden" name="ID" value=blogPost.ID)
                                 textarea(id="comment" name="comment", cols="30", rows="2")
                                 br
-                                input(type="submit" value="add comment" id="addCommentButton")
+                                input(type="submit" value="add comment" id="addCommentButton" class="addComment")
                             button(class="toggleComments") !{"Show Comments"}

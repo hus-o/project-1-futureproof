@@ -1,6 +1,17 @@
 $(document).ready(function(){
 
     console.log("dom is ready")
+    function addIdToButton(nodeLists){
+        var list = document.getElementsByClassName("toggleComments");
+        let i=0;
+        for (let item of list) {
+            let att = document.createAttribute("id");   
+            att.value = i++
+            item.setAttributeNode(att)
+        }
+    }
+
+    addIdToButton([document.getElementsByClassName("toggleComments")])
 
     function getGIF(userQuery,offset){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
@@ -27,17 +38,7 @@ $(document).ready(function(){
          }
     }
 
-    function addIdToButton(nodeLists){
-        var list = document.getElementsByClassName("toggleComments");
-        let i=0;
-        for (let item of list) {
-            let att = document.createAttribute("id");   
-            att.value = i++
-            item.setAttributeNode(att)
-        }
-    }
-
-    addIdToButton([document.getElementsByClassName("toggleComments")])
+ 
 
     let offset = 0
     $("#gifSearch").click(event => {
@@ -81,7 +82,7 @@ $(document).ready(function(){
         }
     });  
 
-    $(".commentBtn").click(function(event) {
+    $(".addComment").click(function(event) {
         event.preventDefault();
         console.log("you clicked the button")
 
