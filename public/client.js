@@ -1,17 +1,45 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    let offset = 0
+
+    $("#gifSearch").click(event => {
+        event.preventDefault();
+        let userQuery = $("#gif").val();
+        getGIF(userQuery, offset)
+         $("#loadMore").css("display", "flex");
+        console.log(userQuery)
+    })
+
+    $("#loadMore").click(event => {
+        event.preventDefault();
+        let userQuery = $("#gif").val();
+        offset += 5
+        console.log(offset)
+        getGIF(userQuery, offset)
+        console.log(userQuery)
+    })
     
     function getGIF(userQuery,offset){
         const key = "6X4aryqB9MRq0HmQ80Eh3GBw22RcLCx6";
         axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${userQuery}&limit=5&offset=${offset}&rating=G&lang=en`)
         .then(data => {
             const parsedGIPHYData = JSON.parse(data.request.responseText)
-            for (let i=0; i < 6; i++){
+            for (let i=0; i < 5; i++){
                 console.log(parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("src", parsedGIPHYData.data[i].images.fixed_height_small.url)
                 $(`#gif${i+1}`).prop("alt", parsedGIPHYData.data[i].title)
             }
         })
     }
+
+    $(".selectable").selectable({
+        selected: function( event, ui ){
+            const urlOfSelected = ui.selected.src;
+            const altOfSelected = ui.selected.alt
+            console.log(urlOfSelected)
+            $("#selectedGifURL").val(urlOfSelected)
+            $("#selectedGifALT").val(altOfSelected)
+        }
+    });
 
     function setToRequired(nodeLists){
         let ids=nodeLists[0]
@@ -47,46 +75,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     
     $(document).ready(function(){
-
-        $(".selectable").selectable({
-            selected: function( event, ui ){
-                const urlOfSelected = ui.selected.src;
-                const altOfSelected = ui.selected.alt
-                console.log(urlOfSelected)
-                $("#selectedGifURL").val(urlOfSelected)
-                $("#selectedGifALT").val(altOfSelected)
-            }
-        });
-
-        $("#gifSearch").click(event => {
-            event.preventDefault();
-            let userQuery = $("#gif").val();
-            getGIF(userQuery, offset);
-            $("#loadMore").css("display", "flex");
-            console.log(userQuery)
-        })
-    
-        $("#loadMore").click(event => {
-            event.preventDefault();
-            let userQuery = $("#gif").val();
-            offset += 5
-            console.log(offset)
-            getGIF(userQuery, offset)
-            console.log(userQuery)
-        })
-    
-        let offset = 0
-        $("#gifSearch").click(event => {
-            event.preventDefault();
-            let userQuery = $("#gif").val();
-            
-            getGIF(userQuery)
-            console.log(userQuery)
-        })
-
-    
-    })
-
+ 
     $(".toggleComments").click(function() { 
         var t = $(this).attr('id'); 
 
@@ -132,6 +121,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })
        
     })
+})
 
 })
     
